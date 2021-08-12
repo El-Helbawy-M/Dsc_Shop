@@ -5,7 +5,7 @@ import '../../Constants.dart';
 class CartHandler extends Database {
   String email;
   CartHandler(this.email) : super("Shopping Cart");
-  Future<State> addUser() => addDocument({"Email": this.email});
-  Future<State> upDateCart(Map<String, Object> data) => upDateDocument(this.email, data);
+  Future<TaskState> addUser() => addDocument({"Email": this.email});
+  Future<TaskState> upDateCart(Map<String, Object> data) => upDateDocument(this.email, data);
   Future<Map> getCart() => getData(this.email);
 }
