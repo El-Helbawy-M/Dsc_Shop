@@ -10,7 +10,7 @@ import '../../Constants.dart';
 class Auther {
   FirebaseAuth auther = FirebaseAuth.instance;
 
-  Future<State> register(AppUser user, String password) async {
+  Future<TaskState> register(AppUser user, String password) async {
     UserCredential result;
     try {
       while (result == null) result = await auther.createUserWithEmailAndPassword(email: user.email, password: password);
@@ -19,20 +19,20 @@ class Auther {
       await CartHandler(user.email).addUser();
     } catch (e) {
       print(e);
-      return State.ERROR;
+      return TaskState.ERROR;
     }
-    return State.OK;
+    return TaskState.OK;
   }
 
-  Future<State> signIn(String email, String password) async {
+  Future<TaskState> signIn(String email, String password) async {
     UserCredential result;
     try {
       while (result == null) result = await auther.signInWithEmailAndPassword(email: email, password: password);
     } catch (e) {
       print(e);
-      return State.ERROR;
+      return TaskState.ERROR;
     }
-    return State.OK;
+    return TaskState.OK;
   }
 }
 
@@ -48,14 +48,14 @@ class Database {
   //=================================================
 
   Database(this.table);
-  Future<State> addDocument(Map<String, Object> data) async {
+  Future<TaskState> addDocument(Map<String, Object> data) async {
     try {
       await db.collection(this.table).doc(data['Email']).set(data);
     } catch (e) {
       print(e);
-      return State.ERROR;
+      return TaskState.ERROR;
     }
-    return State.OK;
+    return TaskState.OK;
   }
 
   Future<Map> getData(String email) async {
@@ -64,24 +64,24 @@ class Database {
     return data;
   }
 
-  Future<State> upDateDocument(String email, Map<String, Object> data) async {
+  Future<TaskState> upDateDocument(String email, Map<String, Object> data) async {
     try {
       await db.collection(this.table).doc(email).update(data);
     } catch (e) {
       print(e);
-      return State.ERROR;
+      return TaskState.ERROR;
     }
-    return State.OK;
+    return TaskState.OK;
   }
 
-  Future<State> clearDataDocument(String email) async {
+  Future<TaskState> clearDataDocument(String email) async {
     try {
       await db.collection(this.table).doc(email).set({});
     } catch (e) {
       print(e);
-      return State.ERROR;
+      return TaskState.ERROR;
     }
-    return State.OK;
+    return TaskState.OK;
   }
   //=================================================
   //=================================================
