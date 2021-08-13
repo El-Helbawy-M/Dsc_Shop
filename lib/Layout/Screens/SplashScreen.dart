@@ -5,7 +5,6 @@ import 'HomeScreen.dart';
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key key}) : super(key: key);
 
-
   @override
   _SplashScreenState createState() => _SplashScreenState();
 }
@@ -14,7 +13,6 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return SplashScreenView(
-
       text: 'DSC Shop!', textStyle:TextStyle(color: Colors.blue),
       navigateRoute: HomeScreen(),
       duration: 6000,

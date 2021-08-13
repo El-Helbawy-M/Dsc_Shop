@@ -39,7 +39,7 @@ class _ProductDetailsState extends State<ProductDetails> {
             Container(
               decoration: BoxDecoration(
                 image: DecorationImage(
-                    fit: BoxFit.cover,
+                    fit: BoxFit.fill,
                     image: AssetImage(
                       'Images/T-Shirt.jpg',
                     )),
