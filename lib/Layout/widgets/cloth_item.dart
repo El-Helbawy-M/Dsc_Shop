@@ -32,11 +32,11 @@ class _ClothItemState extends State<ClothItem> {
                 Navigator.push(context, MaterialPageRoute(builder: (context)=> ProductDetails()));
               },
               child: Container(
-                height: 150,
+                height: 180,
                 padding: EdgeInsets.all(20),
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    fit: BoxFit.cover,
+                    fit: BoxFit.fill,
                     image: AssetImage('Images/T-Shirt.jpg',)
                   ) ,
                   border: Border.all(width: 2, color: Colors.black),
@@ -47,7 +47,6 @@ class _ClothItemState extends State<ClothItem> {
             Positioned(
               child: GestureDetector(
                 onTap: () {
-                  // create fist stateful widget
               setState((){
                 favorite = !favorite;
               });
