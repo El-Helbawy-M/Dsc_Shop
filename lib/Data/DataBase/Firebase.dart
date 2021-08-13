@@ -11,9 +11,8 @@ class Auther {
   FirebaseAuth auther = FirebaseAuth.instance;
 
   Future<TaskState> register(AppUser user, String password) async {
-    UserCredential result;
     try {
-      while (result == null) result = await auther.createUserWithEmailAndPassword(email: user.email, password: password);
+      await auther.createUserWithEmailAndPassword(email: user.email, password: password);
       await UserHandler(user).addUser();
       await FavoriteHandler(user.email).addUser();
       await CartHandler(user.email).addUser();
