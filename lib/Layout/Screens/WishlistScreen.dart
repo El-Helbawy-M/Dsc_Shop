@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import '../../Data/DataBase/Api.dart';
 
-class HomeScreen extends StatefulWidget {
+class WishListScreen extends StatefulWidget {
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  _WishListScreenState createState() => _WishListScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _WishListScreenState extends State<WishListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

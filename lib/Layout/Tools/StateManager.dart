@@ -9,6 +9,7 @@ class StateManager extends ChangeNotifier {
   setData() async {
     List value = await Api().requestData();
     this.data = value.map((m) => Product(m["title"], m["description"], m["category"], m["image"], double.parse(m["price"].toString()))).toList();
+    print(this.data);
     notifyListeners();
   }
 

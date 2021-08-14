@@ -64,7 +64,7 @@ class _ClothItemState extends State<ClothItem> {
           padding: const EdgeInsets.all(5.0),
           child: Text(
             widget.product.name,
-            style: kClothTitleStyle,
+            style: kTextClothTitleStyle,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
           ),
@@ -73,7 +73,7 @@ class _ClothItemState extends State<ClothItem> {
           padding: const EdgeInsets.only(left: 8.0),
           child: Text(
             '\$${widget.product.price}',
-            style: kClothPriceStyle,
+            style: kTextClothPriceStyle,
           ),
         ),
       ],
