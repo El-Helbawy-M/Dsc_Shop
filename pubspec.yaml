@@ -57,6 +57,7 @@ flutter:
     - Images/T-Shirt.jpg
     - Images/brunch1.png
     - Images/login.png
+    - Images/signup.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

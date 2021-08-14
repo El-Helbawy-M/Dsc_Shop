@@ -3,6 +3,7 @@ import 'package:dsc_shop/Layout/Screens/HomeScreen.dart';
 import 'package:dsc_shop/Layout/Screens/ProductDetailsScreen.dart';
 import 'package:dsc_shop/Layout/Screens/WishlistScreen.dart';
 import 'package:dsc_shop/Layout/Screens/signIn_form_screen.dart';
+import 'package:dsc_shop/Layout/Screens/signUp_form_screen.dart';
 import 'package:dsc_shop/Layout/Tools/StateManager.dart';
 import 'package:dsc_shop/Layout/tools/TimerManager.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -34,10 +35,10 @@ class MyApp extends StatelessWidget {
               statusBarBrightness: Brightness.dark
             )
           )),
-      /*    routes: {"Home Screen": (context) => ChangeNotifierProvider(create: (context) => StateManager(), child: HomeScreen()),
+          routes: {"Home Screen": (context) => ChangeNotifierProvider(create: (context) => StateManager(), child: HomeScreen()),
       "Splash Screen" : (context)=>ChangeNotifierProvider(create: (context)=>TimerManager(),child: SplashScreen(),)},
-      initialRoute: "Splash Screen",*/
-      home: LoginForm(),
+      initialRoute: "Splash Screen",
+    //  home: SignUpScreen(),
     );
   }
 }

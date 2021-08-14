@@ -13,6 +13,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+
   @override
   Widget build(BuildContext context) {
     var stateManager = Provider.of<StateManager>(context);
@@ -39,7 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Padding(
         padding: const EdgeInsets.all(10.0),
         child: (stateManager.data == null)
-            ? Center(child: CircularProgressIndicator())
+            ? Center(child: CircularProgressIndicator(),)
             : GridView(
                 gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
                   maxCrossAxisExtent: 200,

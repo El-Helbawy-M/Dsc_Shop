@@ -3,13 +3,14 @@ import 'package:dsc_shop/Layout/widgets/bottom_button.dart';
 import 'package:dsc_shop/Layout/widgets/login_text_form_field.dart';
 import 'package:flutter/material.dart';
 
-class LoginForm extends StatelessWidget {
+class SignInScreen extends StatelessWidget {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         centerTitle: true,
         title: Text('DSC Shop'),
@@ -25,6 +26,8 @@ class LoginForm extends StatelessWidget {
                // crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height / 2.5,
                     decoration: BoxDecoration(
                         image: DecorationImage(
                           image: AssetImage('Images/login.png'),
@@ -45,7 +48,7 @@ class LoginForm extends StatelessWidget {
                   ), // LoginTextFormField
 
                   SizedBox(
-                    height: 30,
+                    height: 15,
                   ),
 
                   //****************************** password text form field
@@ -64,14 +67,14 @@ class LoginForm extends StatelessWidget {
                   ), // LoginTextFormField
 
                   SizedBox(
-                    height: 20,
+                    height: 30,
                   ),
 
-                  //************************* signIn button
+                  //************************* sign in button
                   //********************************************
 
                   BottomButton(
-                    buttonTitle: 'signIn',
+                    buttonTitle: 'sign in',
                     onPress: () {
                       if (formKey.currentState.validate()) {
                         return showDialog(
@@ -89,7 +92,7 @@ class LoginForm extends StatelessWidget {
                                       // Navigator.pop(context);
                                       Navigator.push(context,
                                           MaterialPageRoute(builder: (context) {
-                                        return LoginForm();
+                                        return SignInScreen();
                                       }));
                                     },
                                     child: Text('cancel'),
