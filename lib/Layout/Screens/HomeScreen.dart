@@ -38,24 +38,22 @@ class _HomeScreenState extends State<HomeScreen> {
       bottomNavigationBar: BottomNavBar(),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
-        child: GridView(
-          gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-            maxCrossAxisExtent: 200,
-            childAspectRatio: 3 / 4,
-            crossAxisSpacing: 20,
-          ),
-          children: (stateManager.data == null)
-              ? []
-              : stateManager.data
-                  .map(
-                    (product) => ClothItem(
-                      clothTitle: product.name,
-                      clothPrice: product.price,
-                      imageUrl: product.image,
-                    ),
-                  )
-                  .toList(),
-        ),
+        child: (stateManager.data == null)
+            ? Center(child: CircularProgressIndicator())
+            : GridView(
+                gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                  maxCrossAxisExtent: 200,
+                  childAspectRatio: 3 / 4,
+                  crossAxisSpacing: 20,
+                ),
+                children: (stateManager.data == null)
+                    ? []
+                    : stateManager.data
+                        .map(
+                          (product) => ClothItem(product),
+                        )
+                        .toList(),
+              ),
       ),
     );
   }

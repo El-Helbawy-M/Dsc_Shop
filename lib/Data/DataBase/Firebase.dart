@@ -24,9 +24,8 @@ class Auther {
   }
 
   Future<TaskState> signIn(String email, String password) async {
-    UserCredential result;
     try {
-      while (result == null) result = await auther.signInWithEmailAndPassword(email: email, password: password);
+      await auther.signInWithEmailAndPassword(email: email, password: password);
     } catch (e) {
       print(e);
       return TaskState.ERROR;

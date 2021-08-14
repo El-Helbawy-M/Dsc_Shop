@@ -1,10 +1,11 @@
+import 'package:dsc_shop/Domain/Models/Product.dart';
 import 'package:dsc_shop/Layout/widgets/bottom_button.dart';
 import 'package:dsc_shop/Layout/widgets/bottom_sheet.dart';
 import 'package:flutter/material.dart';
 
 class ProductDetails extends StatefulWidget {
-  const ProductDetails({Key key}) : super(key: key);
-
+  const ProductDetails(this.product);
+  final Product product;
   @override
   _ProductDetailsState createState() => _ProductDetailsState();
 }
@@ -34,29 +35,25 @@ class _ProductDetailsState extends State<ProductDetails> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
-        child: ListView(
+        child: Column(
           children: [
-            Container(
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                    fit: BoxFit.fill,
-                    image: AssetImage(
-                      'Images/T-Shirt.jpg',
-                    )),
+            Expanded(
+              child: Container(
+                decoration: BoxDecoration(
+                  image: DecorationImage(fit: BoxFit.contain, image: NetworkImage(widget.product.image)),
+                ),
               ),
-              width: 500,
-              height: 300,
             ),
             BottomButton(
               onPress: () {
                 return showModalBottomSheet(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.vertical(
-                      top: Radius.circular(25),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.vertical(
+                        top: Radius.circular(25),
+                      ),
                     ),
-
-                  ),
-                    context: context, builder: (context) => buildSheet(context));
+                    context: context,
+                    builder: (context) => buildSheet(context, widget.product));
               },
               buttonTitle: 'Details',
             )
@@ -65,5 +62,4 @@ class _ProductDetailsState extends State<ProductDetails> {
       ),
     );
   }
-
 }

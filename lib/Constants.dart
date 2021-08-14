@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 
+//==================================== Enum Classes
 enum TaskState { OK, ERROR }
+//====================================
 
-TextStyle kClothTitleStyle = TextStyle(color: Colors.grey.shade500,
-    fontSize: 15,
-    fontWeight: FontWeight.bold);
+//==================================== Colors
 
-TextStyle kClothPriceStyle = TextStyle(fontWeight: FontWeight.bold, fontSize: 20);
+//====================================
+
+//==================================== TextStyles
+TextStyle kClothTitleStyle = TextStyle(fontSize: 17, fontWeight: FontWeight.bold);
+
+TextStyle kClothPriceStyle = TextStyle(fontWeight: FontWeight.w500, fontSize: 15, color: Colors.grey.shade500);
+//====================================

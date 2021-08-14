@@ -1,13 +1,12 @@
+import 'package:dsc_shop/Domain/Models/Product.dart';
 import 'package:flutter/material.dart';
 import '../../Constants.dart';
 import '../Screens/ProductDetailsScreen.dart';
 
 class ClothItem extends StatefulWidget {
-  ClothItem({this.clothTitle, this.clothPrice, this.imageUrl});
+  ClothItem(this.product);
 
-  final String clothTitle;
-  final double clothPrice;
-  final String imageUrl;
+  final Product product;
 
   @override
   _ClothItemState createState() => _ClothItemState();
@@ -28,7 +27,7 @@ class _ClothItemState extends State<ClothItem> {
           children: <Widget>[
             GestureDetector(
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => ProductDetails()));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => ProductDetails(widget.product)));
               },
               child: Container(
                 height: 180,
@@ -37,7 +36,7 @@ class _ClothItemState extends State<ClothItem> {
                   image: DecorationImage(
                       fit: BoxFit.fill,
                       image: NetworkImage(
-                        '${widget.imageUrl}',
+                        '${widget.product.image}',
                       )),
                   border: Border.all(width: 2, color: Colors.black),
                   borderRadius: BorderRadius.circular(15.0),
@@ -64,14 +63,16 @@ class _ClothItemState extends State<ClothItem> {
         Padding(
           padding: const EdgeInsets.all(5.0),
           child: Text(
-            widget.clothTitle,
+            widget.product.name,
             style: kClothTitleStyle,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
           ),
         ),
         Padding(
           padding: const EdgeInsets.only(left: 8.0),
           child: Text(
-            '\$${widget.clothPrice}',
+            '\$${widget.product.price}',
             style: kClothPriceStyle,
           ),
         ),
