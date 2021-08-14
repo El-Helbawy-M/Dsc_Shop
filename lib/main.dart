@@ -1,5 +1,6 @@
 import 'package:dsc_shop/Layout/Screens/HomeScreen.dart';
 import 'package:dsc_shop/Layout/Tools/StateManager.dart';
+import 'package:dsc_shop/Layout/tools/TimerManager.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -21,8 +22,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      routes: {"Home Screen": (context) => ChangeNotifierProvider(create: (context) => StateManager(), child: HomeScreen())},
-      initialRoute: "Home Screen",
+      routes: {"Home Screen": (context) => ChangeNotifierProvider(create: (context) => StateManager(), child: HomeScreen()),
+      "Splash Screen" : (context)=>ChangeNotifierProvider(create: (context)=>TimerManager(),child: SplashScreen(),)},
+      initialRoute: "Splash Screen"
+          ,
     );
   }
 }

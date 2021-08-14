@@ -46,9 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   childAspectRatio: 3 / 4,
                   crossAxisSpacing: 20,
                 ),
-                children: (stateManager.data == null)
-                    ? []
-                    : stateManager.data
+                children:  stateManager.data
                         .map(
                           (product) => ClothItem(product),
                         )
