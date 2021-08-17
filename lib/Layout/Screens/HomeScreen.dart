@@ -1,8 +1,9 @@
-import 'dart:async';
-
+import 'package:dsc_shop/Domain/Models/User.dart';
+import 'package:dsc_shop/Layout/Tools/SearchManager.dart';
 import 'package:dsc_shop/Layout/Tools/StateManager.dart';
+import 'package:dsc_shop/Layout/Widgets/cloth_item.dart';
+import 'package:dsc_shop/Layout/Widgets/searchBar.dart';
 import 'package:dsc_shop/Layout/widgets/bottom_navigation_bar.dart';
-import 'package:dsc_shop/Layout/widgets/cloth_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
@@ -16,42 +17,38 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     var stateManager = Provider.of<StateManager>(context);
-    stateManager.setData();
+    if (stateManager.data == null) stateManager.setData(AppUser("Mohamed", "hamada.helbawy.hh@gmail.com", ""));
     return Scaffold(
       drawer: Drawer(),
-      appBar: AppBar(
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 8.0),
-            child: Icon(Icons.notifications_none_outlined),
-          ),
-        ],
-        toolbarHeight: 70,
-        title: Text(
-          'New Arrivals',
-          style: TextStyle(color: Colors.white, letterSpacing: 2, fontWeight: FontWeight.w500),
-        ),
-        centerTitle: true,
-        elevation: 0.0,
-        backgroundColor: Colors.black,
-      ),
       bottomNavigationBar: BottomNavBar(),
-      body: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: (stateManager.data == null)
-            ? Center(child: CircularProgressIndicator())
-            : GridView(
-                gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                  maxCrossAxisExtent: 200,
-                  childAspectRatio: 3 / 4,
-                  crossAxisSpacing: 20,
-                ),
-                children:  stateManager.data
-                        .map(
-                          (product) => ClothItem(product),
-                        )
-                        .toList(),
-              ),
+      body: SafeArea(
+        child: Stack(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(right: 10.0, left: 10, top: 70),
+              child: (stateManager.data == null)
+                  ? Center(child: CircularProgressIndicator())
+                  : GridView(
+                      gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                        maxCrossAxisExtent: 200,
+                        childAspectRatio: 3 / 4,
+                        crossAxisSpacing: 20,
+                      ),
+                      children: stateManager.data.map(
+                        (product) {
+                          return ClothItem(
+                            product,
+                            stateManager.user.email,
+                            (bool value) => (value) ? stateManager.addFavorite(product) : stateManager.subFavorite(product.name),
+                            stateManager.favorates.containsKey(product.name),
+                          );
+                        },
+                      ).toList(),
+                    ),
+            ),
+            ChangeNotifierProvider(create: (context) => SearchManager(), child: SearchBar(stateManager.data)),
+          ],
+        ),
       ),
     );
   }

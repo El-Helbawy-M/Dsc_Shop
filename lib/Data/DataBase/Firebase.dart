@@ -62,9 +62,9 @@ class Database {
     return data;
   }
 
-  Future<TaskState> upDateDocument(String email, Map<String, Object> data) async {
+  Future<TaskState> upDateDocument(String email, Map<String, Object> data, [bool set = false]) async {
     try {
-      await db.collection(this.table).doc(email).update(data);
+      (set) ? await db.collection(this.table).doc(data['Email']).set(data) : await db.collection(this.table).doc(email).update(data);
     } catch (e) {
       print(e);
       return TaskState.ERROR;

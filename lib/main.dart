@@ -22,10 +22,14 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      routes: {"Home Screen": (context) => ChangeNotifierProvider(create: (context) => StateManager(), child: HomeScreen()),
-      "Splash Screen" : (context)=>ChangeNotifierProvider(create: (context)=>TimerManager(),child: SplashScreen(),)},
-      initialRoute: "Splash Screen"
-          ,
+      routes: {
+        "Home Screen": (context) => ChangeNotifierProvider(create: (context) => StateManager(), child: HomeScreen()),
+        "Splash Screen": (context) => ChangeNotifierProvider(
+              create: (context) => TimerManager(),
+              child: SplashScreen(),
+            )
+      },
+      initialRoute: "Home Screen",
     );
   }
 }

@@ -1,12 +1,16 @@
+import 'package:dsc_shop/Data/Handlers/FavoritesHandler.dart';
 import 'package:dsc_shop/Domain/Models/Product.dart';
 import 'package:flutter/material.dart';
 import '../../Constants.dart';
 import '../Screens/ProductDetailsScreen.dart';
 
 class ClothItem extends StatefulWidget {
-  ClothItem(this.product);
+  const ClothItem(this.product, this.email, this.fun, this.check);
 
   final Product product;
+  final String email;
+  final bool check;
+  final Map<String, Object> Function(bool check) fun;
 
   @override
   _ClothItemState createState() => _ClothItemState();
@@ -15,8 +19,13 @@ class ClothItem extends StatefulWidget {
 class _ClothItemState extends State<ClothItem> {
   IconData enabledIcon;
   IconData disabledIcon;
-
   bool favorite = false;
+
+  @override
+  void initState() {
+    super.initState();
+    favorite = widget.check;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,10 +54,11 @@ class _ClothItemState extends State<ClothItem> {
             ),
             Positioned(
               child: GestureDetector(
-                onTap: () {
+                onTap: () async {
                   setState(() {
                     favorite = !favorite;
                   });
+                  await FavoriteHandler(widget.email).upDateFavorites(widget.fun(favorite));
                 },
                 child: Icon(
                   favorite ? Icons.favorite : Icons.favorite_outline,
