@@ -35,10 +35,10 @@ class MyApp extends StatelessWidget {
               statusBarBrightness: Brightness.dark
             )
           )),
-          routes: {"Home Screen": (context) => ChangeNotifierProvider(create: (context) => StateManager(), child: HomeScreen()),
-      "Splash Screen" : (context)=>ChangeNotifierProvider(create: (context)=>TimerManager(),child: SplashScreen(),)},
-      initialRoute: "Splash Screen",
-    //  home: SignUpScreen(),
+      //     routes: {"Home Screen": (context) => ChangeNotifierProvider(create: (context) => StateManager(), child: HomeScreen()),
+      // "Splash Screen" : (context)=>ChangeNotifierProvider(create: (context)=>TimerManager(),child: SplashScreen(),)},
+      // initialRoute: "Splash Screen",
+     home: SignUpScreen(),
     );
   }
 }

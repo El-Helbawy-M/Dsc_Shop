@@ -4,19 +4,16 @@ import '../../Constants.dart';
 import '../Screens/ProductDetailsScreen.dart';
 
 class ClothItem extends StatefulWidget {
-  ClothItem(this.product);
-
+  const ClothItem({this.product, this.icon, this.onPressed});
+  final IconData icon;
   final Product product;
+  final Function onPressed;
 
   @override
   _ClothItemState createState() => _ClothItemState();
 }
 
 class _ClothItemState extends State<ClothItem> {
-  IconData enabledIcon;
-  IconData disabledIcon;
-
-  bool favorite = false;
 
   @override
   Widget build(BuildContext context) {
@@ -71,15 +68,8 @@ class _ClothItemState extends State<ClothItem> {
                     style: kTextClothPriceStyle,
                   ),
                   GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        favorite = !favorite;
-                      });
-                    },
-                    child: Icon(
-                      favorite ? Icons.favorite : Icons.favorite_outline,
-                      color: Colors.red,
-                    ),
+                    onTap: widget.onPressed,
+                    child: Icon(widget.icon, color: Colors.red,),
                   ),
                 ],
               ),
@@ -90,3 +80,11 @@ class _ClothItemState extends State<ClothItem> {
     );
   }
 }
+// favorite ? Icons.favorite : Icons.favorite_outline,
+// color: Colors.red,
+
+//     {
+// setState(() {
+// favorite = !favorite;
+// });
+// }

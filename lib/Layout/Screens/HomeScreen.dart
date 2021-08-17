@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:dsc_shop/Layout/Tools/StateManager.dart';
 import 'package:dsc_shop/Layout/widgets/bottom_navigation_bar.dart';
 import 'package:dsc_shop/Layout/widgets/cloth_item.dart';
@@ -13,13 +11,24 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  IconData enabledIcon;
+  IconData disabledIcon;
+  bool favorite = false;
 
   @override
   Widget build(BuildContext context) {
     var stateManager = Provider.of<StateManager>(context);
     stateManager.setData();
     return Scaffold(
-      drawer: Drawer(),
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            Container(
+           //TODO: insert personal picture with email,
+            ),
+          ],
+        ),
+      ),
       appBar: AppBar(
         actions: [
           Padding(
@@ -30,7 +39,9 @@ class _HomeScreenState extends State<HomeScreen> {
         toolbarHeight: 70,
         title: Text(
           'New Arrivals',
-          style: TextStyle(color: Colors.white, letterSpacing: 2, fontWeight: FontWeight.w500),
+          style: TextStyle(color: Colors.white,
+              letterSpacing: 2,
+              fontWeight: FontWeight.w500),
         ),
         centerTitle: true,
         elevation: 0.0,
@@ -42,17 +53,25 @@ class _HomeScreenState extends State<HomeScreen> {
         child: (stateManager.data == null)
             ? Center(child: CircularProgressIndicator(),)
             : GridView(
-                gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                  maxCrossAxisExtent: 200,
-                  childAspectRatio: 3 / 4,
-                  crossAxisSpacing: 20,
-                ),
-                children:  stateManager.data
-                        .map(
-                          (product) => ClothItem(product),
-                        )
-                        .toList(),
-              ),
+          gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+            maxCrossAxisExtent: 200,
+            childAspectRatio: 3 / 4,
+            crossAxisSpacing: 20,
+          ),
+          children: stateManager.data
+              .map(
+                (product) => ClothItem(
+                  product: product,
+                  onPressed:(){
+                  setState(() {
+                    favorite = ! favorite;
+                  });
+                  },
+                  icon: favorite ? Icons.favorite : Icons.favorite_outline,
+                  ),
+          )
+              .toList(),
+        ),
       ),
     );
   }

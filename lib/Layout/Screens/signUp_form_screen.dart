@@ -10,11 +10,53 @@ class SignUpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //TODO: this drawer just for test
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            Container(
+              color: Colors.grey.shade300,
+              width: double.infinity,
+              height: 200,
+            child:  Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CircleAvatar(
+                    backgroundImage: AssetImage('Images/brunch1.png'),
+                    backgroundColor: Colors.white,
+                    radius: 30,
+                  ),
+                  SizedBox(height: 10,),
+                  Text('user name', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, fontFamily: 'Lobster'),),
+                  Text('userName@gmail.com',style: TextStyle(fontSize: 15)),
+
+                ],
+              ),
+            ),
+            Container(
+              color: Colors.red,
+            /*  child: Column(
+               mainAxisAlignment: MainAxisAlignment.center,
+                //crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  CircleAvatar(
+                    backgroundImage: AssetImage('Images/brunch1.png'),
+                    backgroundColor: Colors.white,
+                    radius: 30,
+                  ),
+                  Text('user name'),
+                  Text('userName@gmail.com'),
+
+                ],
+              ),*/
+            ),
+          ],
+        ),
+      ),
       backgroundColor: Colors.white,
       appBar: AppBar(
         centerTitle: true,
-        title: Text('DSC Shop'),
-        // backgroundColor: Colors.black,
+        title: Text('DSC Shop', style:TextStyle(fontFamily: 'Lobster', fontSize: 25),),
       ), // AppBar
       body: Center(
         child: Container(
@@ -23,16 +65,18 @@ class SignUpScreen extends StatelessWidget {
             key: formKey,
             child: SingleChildScrollView(
               child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,                children: [
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
                   Container(
                     width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height / 2.9,
+                    height: MediaQuery.of(context).size.height / 2.5,
                     decoration: BoxDecoration(
                         image: DecorationImage(
-                          fit: BoxFit.fill,
-                          image: AssetImage('Images/signup.png',),
-                        )
-                    ),
+                      fit: BoxFit.fill,
+                      image: AssetImage(
+                        'Images/signup.png',
+                      ),
+                    )),
                   ),
                   SignInTextFormField(
                     labelText: 'Email',
@@ -79,7 +123,9 @@ class SignUpScreen extends StatelessWidget {
                       }
                     },
                   ),
-         SizedBox(height: 30,),
+                  SizedBox(
+                    height: 30,
+                  ),
 
                   //************************* signUp button
                   //********************************************
@@ -93,7 +139,7 @@ class SignUpScreen extends StatelessWidget {
                             builder: (context) {
                               return AlertDialog(
                                 title:
-                                Text('Are you sure you want to sign in?'),
+                                    Text('Are you sure you want to sign in?'),
                                 //content: Text('hi'),
                                 actions: [
                                   //********************** cancel button
@@ -103,8 +149,8 @@ class SignUpScreen extends StatelessWidget {
                                       // Navigator.pop(context);
                                       Navigator.push(context,
                                           MaterialPageRoute(builder: (context) {
-                                            return SignUpScreen();
-                                          }));
+                                        return SignUpScreen();
+                                      }));
                                     },
                                     child: Text('cancel'),
                                   ), // TextButton
