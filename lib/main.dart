@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
+import 'Layout/Screens/CartScreen.dart';
 import 'Layout/Screens/SplashScreen.dart';
 
 void main() async {
@@ -31,14 +32,14 @@ class MyApp extends StatelessWidget {
             backgroundColor: Colors.black,
             backwardsCompatibility: false,
             systemOverlayStyle: SystemUiOverlayStyle(
-              statusBarColor: Colors.white,
+              statusBarColor: Colors.white70,
               statusBarBrightness: Brightness.dark
             )
-          )),
+          ),),
       //     routes: {"Home Screen": (context) => ChangeNotifierProvider(create: (context) => StateManager(), child: HomeScreen()),
       // "Splash Screen" : (context)=>ChangeNotifierProvider(create: (context)=>TimerManager(),child: SplashScreen(),)},
       // initialRoute: "Splash Screen",
-     home: SignUpScreen(),
+     home: CartScreen(),
     );
   }
 }

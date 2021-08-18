@@ -36,7 +36,7 @@ class _ClothItemState extends State<ClothItem> {
                   fit: BoxFit.fill,
                   image: NetworkImage(
                     '${widget.product.image}',
-                  )),
+                  ),),
               borderRadius: BorderRadius.circular(15.0),
               boxShadow: [
                 BoxShadow(

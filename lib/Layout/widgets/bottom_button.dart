@@ -18,7 +18,7 @@ class BottomButton extends StatelessWidget {
             primary: Colors.black,
             padding: EdgeInsets.symmetric(vertical: 15.0)),
         onPressed: onPress,
-        child: Text(buttonTitle, style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),),),
+        child: Text(buttonTitle, style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500, fontFamily: 'Lobster'),),),
     );
   }
 }

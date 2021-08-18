@@ -18,7 +18,7 @@ class SignUpScreen extends StatelessWidget {
               color: Colors.grey.shade300,
               width: double.infinity,
               height: 200,
-            child:  Column(
+              child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   CircleAvatar(
@@ -26,16 +26,23 @@ class SignUpScreen extends StatelessWidget {
                     backgroundColor: Colors.white,
                     radius: 30,
                   ),
-                  SizedBox(height: 10,),
-                  Text('user name', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, fontFamily: 'Lobster'),),
-                  Text('userName@gmail.com',style: TextStyle(fontSize: 15)),
-
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    'Amira Ezz',
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Lobster'),
+                  ),
+                  Text('userName@gmail.com', style: TextStyle(fontSize: 15)),
                 ],
               ),
             ),
             Container(
               color: Colors.red,
-            /*  child: Column(
+              /*  child: Column(
                mainAxisAlignment: MainAxisAlignment.center,
                 //crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
@@ -56,7 +63,10 @@ class SignUpScreen extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: AppBar(
         centerTitle: true,
-        title: Text('DSC Shop', style:TextStyle(fontFamily: 'Lobster', fontSize: 25),),
+        title: Text(
+          'DSC Shop',
+          style: TextStyle(fontFamily: 'Lobster', fontSize: 25),
+        ),
       ), // AppBar
       body: Center(
         child: Container(
@@ -79,12 +89,12 @@ class SignUpScreen extends StatelessWidget {
                     )),
                   ),
                   SignInTextFormField(
-                    labelText: 'Email',
-                    helperText: 'Enter your Email',
+                    labelText: 'Name',
+                    helperText: 'Enter your Name',
                     invisible: false,
                     validateFunction: (var value) {
                       if (value == null || value.isEmpty) {
-                        return 'You must enter your Email';
+                        return 'You must enter your Name';
                       } else {
                         return null;
                       }
@@ -95,8 +105,8 @@ class SignUpScreen extends StatelessWidget {
                     height: 25,
                   ),
                   SignInTextFormField(
-                    labelText: 'Name',
-                    helperText: 'Enter your Name',
+                    labelText: 'Email',
+                    helperText: 'Enter your Email',
                     invisible: false,
                     validateFunction: (var value) {
                       if (value == null || value.isEmpty) {
@@ -139,7 +149,7 @@ class SignUpScreen extends StatelessWidget {
                             builder: (context) {
                               return AlertDialog(
                                 title:
-                                    Text('Are you sure you want to sign in?'),
+                                    Text('Are you sure you want to sign up?'),
                                 //content: Text('hi'),
                                 actions: [
                                   //********************** cancel button
@@ -161,7 +171,7 @@ class SignUpScreen extends StatelessWidget {
                                     onPressed: () {
                                       final snackBar = SnackBar(
                                           content: Text(
-                                              ' you are successfully login, '));
+                                              ' you are successfully sign up'));
                                       ScaffoldMessenger.of(context)
                                           .showSnackBar(snackBar);
                                       Navigator.pop(context);

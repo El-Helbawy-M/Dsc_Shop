@@ -13,7 +13,7 @@ class SignInScreen extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: AppBar(
         centerTitle: true,
-        title: Text('DSC Shop'),
+        title: Text('DSC Shop', style:TextStyle(fontFamily: 'Lobster', fontSize: 25),),
        // backgroundColor: Colors.black,
       ), // AppBar
       body: Center(
