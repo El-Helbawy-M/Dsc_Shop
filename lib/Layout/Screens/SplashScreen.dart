@@ -1,8 +1,7 @@
 import 'package:dsc_shop/Layout/tools/TimerManager.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:splash_screen_view/SplashScreenView.dart';
-import 'HomeScreen.dart';
+
 
 class SplashScreen extends StatelessWidget {
   @override
@@ -24,11 +23,3 @@ class SplashScreen extends StatelessWidget {
     );
   }
 }
-/*SplashScreenView(
-      text: 'DSC Shop!', textStyle:TextStyle(color: Colors.blue),
-      navigateRoute: HomeScreen(),
-      duration: 6000,
-      imageSize: 130,
-      imageSrc: "Images/brunch1.png",
-      backgroundColor: Colors.grey.shade100,
-    );*/

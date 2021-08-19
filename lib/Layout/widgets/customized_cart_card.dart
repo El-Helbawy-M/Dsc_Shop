@@ -2,7 +2,6 @@ import 'package:dsc_shop/Domain/Models/Product.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:dsc_shop/Constants.dart';
-import 'package:provider/provider.dart';
 
 class CustomizedCartCard extends StatelessWidget {
 Product product;

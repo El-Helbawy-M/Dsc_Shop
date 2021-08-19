@@ -1,29 +1,7 @@
-import 'package:dsc_shop/Constants.dart';
 import 'package:dsc_shop/Domain/Models/Product.dart';
-import 'package:dsc_shop/Layout/widgets/cloth_item.dart';
 import 'package:dsc_shop/Layout/widgets/customized_cart_card.dart';
 import 'package:flutter/material.dart';
-import 'package:dsc_shop/Layout/widgets/cloth_item.dart';
-import 'package:provider/provider.dart';
-import 'package:dsc_shop/Layout/tools/StateManager.dart';
 
-// ListView(
-// children: products
-//     .map(
-// (product) => Row(
-// children: [
-// Container(
-// height: 250,
-// width: 200,
-// decoration: BoxDecoration(
-// image: DecorationImage(
-// fit: BoxFit.contain,
-// image: NetworkImage(product.image))),
-// )
-// ],
-// ),
-// )
-//     .toList());
 class CartScreen extends StatefulWidget {
   Product product;
 

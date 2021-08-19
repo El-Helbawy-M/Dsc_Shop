@@ -1,65 +1,27 @@
-import 'package:dsc_shop/Constants.dart';
+import 'dart:io';
+import 'dart:typed_data';
 import 'package:dsc_shop/Layout/widgets/bottom_button.dart';
 import 'package:dsc_shop/Layout/widgets/login_text_form_field.dart';
 import 'package:flutter/material.dart';
 
-class SignUpScreen extends StatelessWidget {
+
+class SignUpScreen extends StatefulWidget {
+  @override
+  _SignUpScreenState createState() => _SignUpScreenState();
+}
+
+class _SignUpScreenState extends State<SignUpScreen> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+
+  File fileImage;
+  Uint8List memoryImage;
+  bool isFile = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //TODO: this drawer just for test
-      drawer: Drawer(
-        child: ListView(
-          children: [
-            Container(
-              color: Colors.grey.shade300,
-              width: double.infinity,
-              height: 200,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  CircleAvatar(
-                    backgroundImage: AssetImage('Images/brunch1.png'),
-                    backgroundColor: Colors.white,
-                    radius: 30,
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    'Amira Ezz',
-                    style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        fontFamily: 'Lobster'),
-                  ),
-                  Text('userName@gmail.com', style: TextStyle(fontSize: 15)),
-                ],
-              ),
-            ),
-            Container(
-              color: Colors.red,
-              /*  child: Column(
-               mainAxisAlignment: MainAxisAlignment.center,
-                //crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  CircleAvatar(
-                    backgroundImage: AssetImage('Images/brunch1.png'),
-                    backgroundColor: Colors.white,
-                    radius: 30,
-                  ),
-                  Text('user name'),
-                  Text('userName@gmail.com'),
-
-                ],
-              ),*/
-            ),
-          ],
-        ),
-      ),
       backgroundColor: Colors.white,
       appBar: AppBar(
         centerTitle: true,

@@ -24,12 +24,47 @@ class _HomeScreenState extends State<HomeScreen> {
         child: ListView(
           children: [
             Container(
-           //TODO: insert personal picture with email,
+              color: Colors.grey.shade300,
+              width: double.infinity,
+              height: 200,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CircleAvatar(
+                    backgroundImage: AssetImage('Images/brunch1.png'),
+                    backgroundColor: Colors.white,
+                    radius: 30,
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Text('Amira Ezz',
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Lobster'),
+                  ),
+                  Text('miraezz14@gmail.com', style: TextStyle(fontSize: 15)),
+                  SizedBox(height: 30.0,),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal:20.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text('Light Mode'),
+                        IconButton(icon: Icon(Icons.star_half), onPressed: (){},),
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            ),
+            Container(
+              color: Colors.red,
             ),
           ],
         ),
-      ),
-      appBar: AppBar(
+      ),      appBar: AppBar(
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 8.0),

@@ -80,11 +80,3 @@ class _ClothItemState extends State<ClothItem> {
     );
   }
 }
-// favorite ? Icons.favorite : Icons.favorite_outline,
-// color: Colors.red,
-
-//     {
-// setState(() {
-// favorite = !favorite;
-// });
-// }
