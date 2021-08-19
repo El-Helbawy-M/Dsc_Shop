@@ -1,50 +1,39 @@
-import 'package:dsc_shop/Layout/widgets/bottom_navigation_bar.dart';
-import 'package:dsc_shop/Layout/widgets/cloth_item.dart';
+import 'package:dsc_shop/Domain/Models/User.dart';
+import 'package:dsc_shop/Layout/Tools/StateManager.dart';
+import 'package:dsc_shop/Layout/Widgets/cloth_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import '../../Data/DataBase/Api.dart';
+import 'package:provider/provider.dart';
 
-class HomeScreen extends StatefulWidget {
-  @override
-  _HomeScreenState createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
+class WishListScreen extends StatelessWidget {
+  const WishListScreen(this.user);
+  final AppUser user;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        toolbarHeight: 70,
-        title: Text(
-          'New Arrivals',
-          style: TextStyle(color: Colors.white, letterSpacing: 2, fontWeight: FontWeight.w500),
-        ),
-        centerTitle: true,
-        elevation: 0.0,
-        backgroundColor: Colors.black,
-      ),
-      bottomNavigationBar: BottomNavBar(),
-      body: Padding(
-        padding: const EdgeInsets.all(15.0),
-        child: GridView(
-          gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-            maxCrossAxisExtent: 200,
-            childAspectRatio: 3 / 4,
-            crossAxisSpacing: 20,
-            mainAxisSpacing: 10,
-          ),
-          children: <Widget>[
-            // ClothItem(),
-            // ClothItem(),
-            // ClothItem(),
-            // ClothItem(),
-            // ClothItem(),
-            // ClothItem(),
-            // ClothItem(),
-            // ClothItem(),
-          ],
-        ),
-      ),
-    );
+    var stateManager = Provider.of<StateManager>(context);
+    if (stateManager.favorates == null) stateManager.getFavoirtes(user);
+    return (stateManager.data == null)
+        ? Center(child: CircularProgressIndicator())
+        : Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: GridView(
+              gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                maxCrossAxisExtent: 200,
+                childAspectRatio: 3 / 4,
+                crossAxisSpacing: 20,
+                mainAxisSpacing: 10,
+              ),
+              children: stateManager.data.map(
+                (product) {
+                  return ClothItem(
+                    product,
+                    user,
+                    (bool value) => (value) ? stateManager.addFavorite(product) : stateManager.subFavorite(product.name),
+                    stateManager.favorates.containsKey(product.name),
+                  );
+                },
+              ).toList(),
+            ),
+          );
   }
 }

@@ -9,13 +9,14 @@ import '../../Constants.dart';
 
 class Auther {
   FirebaseAuth auther = FirebaseAuth.instance;
-
-  Future<TaskState> register(AppUser user, String password) async {
+  AppUser user;
+  Auther([this.user]);
+  Future<TaskState> register(String password) async {
     try {
-      await auther.createUserWithEmailAndPassword(email: user.email, password: password);
-      await UserHandler(user).addUser();
-      await FavoriteHandler(user.email).addUser();
-      await CartHandler(user.email).addUser();
+      await auther.createUserWithEmailAndPassword(email: this.user.email, password: password);
+      await UserHandler(this.user).addUser();
+      await FavoriteHandler(this.user.email).addUser();
+      await CartHandler(this.user.email).addUser();
     } catch (e) {
       print(e);
       return TaskState.ERROR;

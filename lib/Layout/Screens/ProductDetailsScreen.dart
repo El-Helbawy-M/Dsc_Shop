@@ -1,11 +1,13 @@
 import 'package:dsc_shop/Domain/Models/Product.dart';
+import 'package:dsc_shop/Domain/Models/User.dart';
 import 'package:dsc_shop/Layout/widgets/bottom_button.dart';
 import 'package:dsc_shop/Layout/widgets/bottom_sheet.dart';
 import 'package:flutter/material.dart';
 
 class ProductDetails extends StatefulWidget {
-  const ProductDetails(this.product);
+  const ProductDetails(this.product, this.user);
   final Product product;
+  final AppUser user;
   @override
   _ProductDetailsState createState() => _ProductDetailsState();
 }
@@ -53,7 +55,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                       ),
                     ),
                     context: context,
-                    builder: (context) => buildSheet(context, widget.product));
+                    builder: (context) => buildSheet(context, widget.product, widget.user));
               },
               buttonTitle: 'Details',
             )

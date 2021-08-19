@@ -9,12 +9,9 @@ class StateManager extends ChangeNotifier {
   Map<String, Object> favorates;
   AppUser user;
   // bool check = false;
-  Future _setFavorites(String email) async {
-    favorates = await FavoriteHandler(email).getProducts();
-    print(favorates);
-  }
+  Future _setFavorites(String email) async => favorates = await FavoriteHandler(email).getProducts();
 
-  void setData(AppUser use) async {
+  Future<void> setData(AppUser use) async {
     List value = await Api().requestData();
     this.user = use;
     this.data = value.map((m) => Product(m["title"], m["description"], m["category"], m["image"], double.parse(m["price"].toString()))).toList();
@@ -22,7 +19,11 @@ class StateManager extends ChangeNotifier {
     notifyListeners();
   }
 
-  void getFavoirtes(String email) async => await _setFavorites(email);
+  void getFavoirtes(AppUser use) async {
+    await setData(use);
+    this.data = this.data.where((e) => this.favorates.containsKey(e.name)).toList();
+    notifyListeners();
+  }
 
   Map addFavorite(Product product) {
     this.favorates.addAll({
@@ -36,6 +37,12 @@ class StateManager extends ChangeNotifier {
     this.favorates.remove(key);
     notifyListeners();
     return this.favorates;
+  }
+
+  void clear() {
+    this.data = null;
+    this.favorates = null;
+    notifyListeners();
   }
 
   // void reCheck() {

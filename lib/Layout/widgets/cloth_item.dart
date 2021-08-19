@@ -1,14 +1,15 @@
 import 'package:dsc_shop/Data/Handlers/FavoritesHandler.dart';
 import 'package:dsc_shop/Domain/Models/Product.dart';
+import 'package:dsc_shop/Domain/Models/User.dart';
 import 'package:flutter/material.dart';
 import '../../Constants.dart';
 import '../Screens/ProductDetailsScreen.dart';
 
 class ClothItem extends StatefulWidget {
-  const ClothItem(this.product, this.email, this.fun, this.check);
+  const ClothItem(this.product, this.user, this.fun, this.check);
 
   final Product product;
-  final String email;
+  final AppUser user;
   final bool check;
   final Map<String, Object> Function(bool check) fun;
 
@@ -32,58 +33,65 @@ class _ClothItemState extends State<ClothItem> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Stack(
-          children: <Widget>[
-            GestureDetector(
-              onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => ProductDetails(widget.product)));
-              },
-              child: Container(
-                height: 180,
-                padding: EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                      fit: BoxFit.fill,
-                      image: NetworkImage(
-                        '${widget.product.image}',
-                      )),
-                  border: Border.all(width: 2, color: Colors.black),
-                  borderRadius: BorderRadius.circular(15.0),
+        GestureDetector(
+          onTap: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) => ProductDetails(widget.product, widget.user)));
+          },
+          child: Container(
+            height: 180,
+            padding: EdgeInsets.all(20),
+            decoration: BoxDecoration(
+              color: Colors.grey.shade600,
+              image: DecorationImage(
+                  fit: BoxFit.fill,
+                  image: NetworkImage(
+                    '${widget.product.image}',
+                  )),
+              borderRadius: BorderRadius.circular(15.0),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.5),
+                  spreadRadius: 2,
+                  blurRadius: 5,
+                  offset: Offset(5, 5), // changes position of shadow
                 ),
-              ),
+              ],
             ),
-            Positioned(
-              child: GestureDetector(
-                onTap: () async {
-                  setState(() {
-                    favorite = !favorite;
-                  });
-                  await FavoriteHandler(widget.email).upDateFavorites(widget.fun(favorite));
-                },
-                child: Icon(
-                  favorite ? Icons.favorite : Icons.favorite_outline,
-                  color: Colors.black,
-                ),
-              ),
-              top: 5.0,
-              right: 5.0,
-            ),
-          ],
-        ),
-        Padding(
-          padding: const EdgeInsets.all(5.0),
-          child: Text(
-            widget.product.name,
-            style: kClothTitleStyle,
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(left: 8.0),
-          child: Text(
-            '\$${widget.product.price}',
-            style: kClothPriceStyle,
+          padding: const EdgeInsets.only(top: 8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                widget.product.name,
+                style: kTextClothTitleStyle,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    '\$${widget.product.price}',
+                    style: kTextClothPriceStyle,
+                  ),
+                  GestureDetector(
+                    onTap: () async {
+                      setState(() {
+                        favorite = !favorite;
+                      });
+                      await FavoriteHandler(widget.user.email).upDateFavorites(widget.fun(favorite));
+                    },
+                    child: Icon(
+                      favorite ? Icons.favorite : Icons.favorite_outline,
+                      color: Colors.red,
+                    ),
+                  ),
+                ],
+              ),
+            ],
           ),
         ),
       ],
