@@ -8,4 +8,5 @@ class CartHandler extends Database {
   Future<TaskState> addUser() => addDocument({"Email": this.email});
   Future<TaskState> upDateCart(Map<String, Object> data) => upDateDocument(this.email, data);
   Future<Map> getCart() => getData(this.email);
+  Future<void> pay() => clearDataDocument(email);
 }

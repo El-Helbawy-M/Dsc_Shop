@@ -45,7 +45,7 @@ Widget buildSheet(BuildContext context, Product product, AppUser user) {
             onPress: () async {
               showDialog(context: context, builder: (context) => loading);
               await CartHandler(user.email).upDateCart({
-                product.name: {"Price": product.price, "Image": product.image}
+                product.name: {"Price": product.price, "Image": product.image, "Descreption": product.description, "Category": product.category}
               });
               Navigator.pop(context);
               Navigator.pop(context);

@@ -1,3 +1,4 @@
+import 'package:dsc_shop/Layout/Screens/CartScreen.dart';
 import 'package:dsc_shop/Layout/Screens/HomeScreen.dart';
 import 'package:dsc_shop/Layout/Screens/WishlistScreen.dart';
 import 'package:dsc_shop/Layout/Tools/StateManager.dart';
@@ -22,7 +23,4 @@ TextStyle kTextLogoutStyle = TextStyle(fontSize: 30, color: Colors.black, fontSt
 //====================================
 
 //====================================
-Map<Pages, Widget> pages(AppUser user) => {
-      Pages.Home: Home(user),
-      Pages.Favorite: WishListScreen(user),
-    };
+Map<Pages, Widget> pages(AppUser user) => {Pages.Home: Home(user), Pages.Favorite: WishListScreen(user), Pages.Cart: CartScreen(user.email)};

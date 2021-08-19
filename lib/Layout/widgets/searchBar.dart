@@ -4,8 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class SearchBar extends StatelessWidget {
-  const SearchBar(this.data);
+  const SearchBar(this.data, this.results, this.oneResult);
   final List<Product> data;
+  final Function(List<Product>) results;
+  final Function(Product) oneResult;
+
   @override
   Widget build(BuildContext context) {
     var searchmanager = Provider.of<SearchManager>(context);
@@ -23,6 +26,11 @@ class SearchBar extends StatelessWidget {
                     padding: EdgeInsets.symmetric(horizontal: 5),
                     color: Colors.grey.shade200,
                     child: TextField(
+                      onSubmitted: (value) {
+                        List<Product> list = data.where((element) => element.name.startsWith(searchmanager.text)).toList();
+                        searchmanager.check(false);
+                        results(list);
+                      },
                       onChanged: (value) {
                         searchmanager.changeText(value);
                         searchmanager.check(true);
@@ -30,7 +38,13 @@ class SearchBar extends StatelessWidget {
                       decoration: InputDecoration(
                         enabledBorder: UnderlineInputBorder(),
                         focusedBorder: UnderlineInputBorder(),
-                        suffixIcon: IconButton(icon: Icon(Icons.search, color: Colors.black), onPressed: () {}),
+                        suffixIcon: IconButton(
+                            icon: Icon(Icons.search, color: Colors.black),
+                            onPressed: () {
+                              List<Product> list = data.where((element) => element.name.startsWith(searchmanager.text)).toList();
+                              searchmanager.check(false);
+                              results(list);
+                            }),
                         hintText: "Search",
                       ),
                     ),
@@ -46,25 +60,32 @@ class SearchBar extends StatelessWidget {
                               .map(
                                 (e) => (!e.name.startsWith(searchmanager.text))
                                     ? SizedBox()
-                                    : Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          Container(
-                                            color: Colors.grey.shade200,
-                                            padding: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
-                                            child: Text(
-                                              e.name,
-                                              maxLines: 1,
-                                              style: TextStyle(color: Colors.black),
+                                    : InkWell(
+                                        onTap: () {
+                                          searchmanager.check(false);
+                                          searchmanager.changeText(e.name);
+                                          oneResult(e);
+                                        },
+                                        child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            Container(
+                                              color: Colors.grey.shade200,
+                                              padding: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
+                                              child: Text(
+                                                e.name,
+                                                maxLines: 1,
+                                                style: TextStyle(color: Colors.black),
+                                              ),
                                             ),
-                                          ),
-                                          Divider(
-                                            height: 0,
-                                            color: Colors.black,
-                                            indent: 5,
-                                            endIndent: 5,
-                                          )
-                                        ],
+                                            Divider(
+                                              height: 0,
+                                              color: Colors.black,
+                                              indent: 5,
+                                              endIndent: 5,
+                                            )
+                                          ],
+                                        ),
                                       ),
                               )
                               .toList(),

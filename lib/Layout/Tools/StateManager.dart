@@ -7,13 +7,26 @@ import 'package:flutter/foundation.dart';
 
 class StateManager extends ChangeNotifier {
   List<Product> data;
-  Map<String, Object> favorates, cart;
+  Product result;
+  Map<String, dynamic> favorates, cart;
   AppUser user;
   // bool check = false;
   Future _setFavorites(String email) async => favorates = await FavoriteHandler(email).getProducts();
 
+  setResult(Product product) {
+    this.result = product;
+    notifyListeners();
+  }
+
+  upDateData(List<Product> value) {
+    this.data = value;
+    result = null;
+    notifyListeners();
+  }
+
   Future<void> setData(AppUser use) async {
     List value = await Api().requestData();
+    this.cart = null;
     this.user = use;
     this.data = value.map((m) => Product(m["title"], m["description"], m["category"], m["image"], double.parse(m["price"].toString()))).toList();
     await _setFavorites(this.user.email);
@@ -22,10 +35,13 @@ class StateManager extends ChangeNotifier {
 
   void getCart(String email) async {
     this.cart = await CartHandler(email).getCart();
-    this.data = this.data.where((e) => this.favorates.containsKey(e.name)).toList();
+    this.cart.remove("Email");
+    this.data = this.cart.keys.map((e) => Product(e, this.cart[e]['Descreption'], this.cart[e]['Category'], this.cart[e]["Image"], this.cart[e]["Price"])).toList();
+    notifyListeners();
   }
 
   void getFavoirtes(AppUser use) async {
+    this.cart = null;
     await setData(use);
     this.data = this.data.where((e) => this.favorates.containsKey(e.name)).toList();
     notifyListeners();

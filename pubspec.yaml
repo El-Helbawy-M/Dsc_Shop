@@ -35,6 +35,7 @@ dependencies:
   firebase_core: ^1.4.0
   splash_screen_view: ^3.0.0
   provider: ^5.0.0
+  image_picker: ^0.8.1
 
 dev_dependencies:
   flutter_test:
@@ -83,5 +84,9 @@ flutter:
   #       - asset: fonts/TrajanPro_Bold.ttf
   #         weight: 700
   #
+  fonts:
+    - family: Lobster
+      fonts:
+        - asset: fonts/Lobster-Regular.ttf
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

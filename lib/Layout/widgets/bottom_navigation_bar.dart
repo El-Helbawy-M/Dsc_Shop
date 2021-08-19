@@ -42,7 +42,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
             icon: Icon(
               Icons.shopping_bag,
             ),
-            label: 'cart'),
+            label: 'Cart'),
       ],
     );
   }

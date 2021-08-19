@@ -21,7 +21,7 @@ class TimerManager extends ChangeNotifier {
   }
 
   void _stop(BuildContext context) {
-    Navigator.pushNamed(context, "Home Screen");
+    Navigator.pushNamed(context, "Sign Up");
     notifyListeners();
   }
 }

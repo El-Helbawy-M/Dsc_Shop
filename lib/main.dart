@@ -12,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
+import 'Layout/Screens/CartScreen.dart';
 import 'Layout/Screens/SplashScreen.dart';
 
 void main() async {
@@ -38,7 +39,7 @@ class MyApp extends StatelessWidget {
               child: SignInScreen(),
             )
       },
-      initialRoute: "Sign In",
+      initialRoute: "Splash Screen",
     );
   }
 }

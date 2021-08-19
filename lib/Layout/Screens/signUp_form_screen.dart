@@ -2,16 +2,29 @@ import 'package:dsc_shop/Data/DataBase/Firebase.dart';
 import 'package:dsc_shop/Domain/Models/User.dart';
 import 'package:dsc_shop/Layout/Tools/SignerManager.dart';
 import 'package:dsc_shop/Layout/Widgets/login_text_form_field.dart';
+import 'dart:io';
+import 'dart:typed_data';
 import 'package:dsc_shop/Layout/widgets/bottom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../Constants.dart';
 
-class SignUpScreen extends StatelessWidget {
+class SignUpScreen extends StatefulWidget {
+  @override
+  _SignUpScreenState createState() => _SignUpScreenState();
+}
+
+class _SignUpScreenState extends State<SignUpScreen> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   AppUser user;
+
+  File fileImage;
+  Uint8List memoryImage;
+  bool isFile = false;
+
   @override
   Widget build(BuildContext signupContext) {
     var manager = Provider.of<Signer>(signupContext);
@@ -19,8 +32,12 @@ class SignUpScreen extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: AppBar(
         centerTitle: true,
-        title: Text('DSC Shop'),
-        // backgroundColor: Colors.black,
+        backgroundColor: Colors.black,
+        leading: SizedBox(),
+        title: Text(
+          'DSC Shop',
+          style: TextStyle(fontFamily: 'Lobster', fontSize: 25),
+        ),
       ), // AppBar
       body: Center(
         child: (manager.loading)

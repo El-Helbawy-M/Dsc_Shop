@@ -20,11 +20,14 @@ class SignInScreen extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: AppBar(
         centerTitle: true,
-        title: Text('DSC Shop'),
-        // backgroundColor: Colors.black,
+        title: Text(
+          'DSC Shop',
+          style: TextStyle(fontFamily: 'Lobster', fontSize: 25),
+        ),
+        backgroundColor: Colors.black,
       ), // AppBar
       body: (manager.loading)
-          ? CircularProgressIndicator()
+          ? Center(child: CircularProgressIndicator())
           : Center(
               child: Container(
                 padding: EdgeInsets.all(15),

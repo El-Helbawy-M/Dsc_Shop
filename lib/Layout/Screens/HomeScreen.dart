@@ -22,7 +22,54 @@ class _HomeScreenState extends State<HomeScreen> {
     var stateManager = Provider.of<StateManager>(context);
     AppUser user = ModalRoute.of(context).settings.arguments;
     return Scaffold(
-      drawer: Drawer(),
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            Container(
+              color: Colors.grey.shade300,
+              width: double.infinity,
+              height: 200,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CircleAvatar(
+                    backgroundImage: AssetImage('Images/brunch1.png'),
+                    backgroundColor: Colors.white,
+                    radius: 30,
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    'Amira Ezz',
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, fontFamily: 'Lobster'),
+                  ),
+                  Text('miraezz14@gmail.com', style: TextStyle(fontSize: 15)),
+                  SizedBox(
+                    height: 30.0,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text('Light Mode'),
+                        IconButton(
+                          icon: Icon(Icons.star_half),
+                          onPressed: () {},
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            ),
+            Container(
+              color: Colors.red,
+            ),
+          ],
+        ),
+      ),
       bottomNavigationBar: BottomNavBar((Pages value) {
         setState(() {
           stateManager.clear();
@@ -54,19 +101,28 @@ class Home extends StatelessWidget {
                       childAspectRatio: 3 / 4,
                       crossAxisSpacing: 20,
                     ),
-                    children: stateManager.data.map(
-                      (product) {
-                        return ClothItem(
-                          product,
-                          user,
-                          (bool value) => (value) ? stateManager.addFavorite(product) : stateManager.subFavorite(product.name),
-                          stateManager.favorates.containsKey(product.name),
-                        );
-                      },
-                    ).toList(),
+                    children: (stateManager.result != null)
+                        ? [
+                            ClothItem(
+                              stateManager.result,
+                              user,
+                              (bool value) => (value) ? stateManager.addFavorite(stateManager.result) : stateManager.subFavorite(stateManager.result.name),
+                              stateManager.favorates.containsKey(stateManager.result.name),
+                            )
+                          ]
+                        : stateManager.data.map(
+                            (product) {
+                              return ClothItem(
+                                product,
+                                user,
+                                (bool value) => (value) ? stateManager.addFavorite(product) : stateManager.subFavorite(product.name),
+                                stateManager.favorates.containsKey(product.name),
+                              );
+                            },
+                          ).toList(),
                   ),
           ),
-          ChangeNotifierProvider(create: (context) => SearchManager(), child: SearchBar(stateManager.data)),
+          ChangeNotifierProvider(create: (context) => SearchManager(), child: SearchBar(stateManager.data, (list) => stateManager.upDateData(list), (value) => stateManager.setResult(value))),
         ],
       ),
     );

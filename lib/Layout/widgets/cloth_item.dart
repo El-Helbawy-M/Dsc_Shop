@@ -43,10 +43,11 @@ class _ClothItemState extends State<ClothItem> {
             decoration: BoxDecoration(
               color: Colors.grey.shade600,
               image: DecorationImage(
-                  fit: BoxFit.fill,
-                  image: NetworkImage(
-                    '${widget.product.image}',
-                  )),
+                fit: BoxFit.fill,
+                image: NetworkImage(
+                  '${widget.product.image}',
+                ),
+              ),
               borderRadius: BorderRadius.circular(15.0),
               boxShadow: [
                 BoxShadow(
