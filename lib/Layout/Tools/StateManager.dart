@@ -1,4 +1,5 @@
 import 'package:dsc_shop/Data/DataBase/Api.dart';
+import 'package:dsc_shop/Data/Handlers/CartHandler.dart';
 import 'package:dsc_shop/Data/Handlers/FavoritesHandler.dart';
 import 'package:dsc_shop/Domain/Models/Product.dart';
 import 'package:dsc_shop/Domain/Models/User.dart';
@@ -6,7 +7,7 @@ import 'package:flutter/foundation.dart';
 
 class StateManager extends ChangeNotifier {
   List<Product> data;
-  Map<String, Object> favorates;
+  Map<String, Object> favorates, cart;
   AppUser user;
   // bool check = false;
   Future _setFavorites(String email) async => favorates = await FavoriteHandler(email).getProducts();
@@ -17,6 +18,11 @@ class StateManager extends ChangeNotifier {
     this.data = value.map((m) => Product(m["title"], m["description"], m["category"], m["image"], double.parse(m["price"].toString()))).toList();
     await _setFavorites(this.user.email);
     notifyListeners();
+  }
+
+  void getCart(String email) async {
+    this.cart = await CartHandler(email).getCart();
+    this.data = this.data.where((e) => this.favorates.containsKey(e.name)).toList();
   }
 
   void getFavoirtes(AppUser use) async {
