@@ -2,7 +2,7 @@
     package="com.example.dsc_shop">
     <uses-permission android:name="android.permission.CAMERA" />
     <application
-        android:label="dsc_shop"
+        android:label="Dsc Shop"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
