@@ -20,6 +20,7 @@ class SignInScreen extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: AppBar(
         centerTitle: true,
+        leading: SizedBox(),
         title: Text(
           'DSC Shop',
           style: TextStyle(fontFamily: 'Lobster', fontSize: 25),
@@ -128,6 +129,18 @@ class SignInScreen extends StatelessWidget {
                                   });
                             }
                           },
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 10),
+                          child: Row(
+                            children: [
+                              Text("You don't have an account ? "),
+                              InkWell(
+                                child: Text(" Sign Up", style: TextStyle(color: Colors.blue)),
+                                onTap: () => Navigator.pushNamed(signInContext, "Sign Up"),
+                              ),
+                            ],
+                          ),
                         ),
                       ],
                     ),

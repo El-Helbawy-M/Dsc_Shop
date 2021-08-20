@@ -12,7 +12,6 @@ enum Pages { Home, Favorite, Cart }
 //====================================
 
 //==================================== Colors
-
 //====================================
 
 //==================================== TextStyles
@@ -22,5 +21,5 @@ TextStyle kTextClothPriceStyle = TextStyle(fontWeight: FontWeight.w500, fontSize
 TextStyle kTextLogoutStyle = TextStyle(fontSize: 30, color: Colors.black, fontStyle: FontStyle.italic, fontWeight: FontWeight.w600, letterSpacing: 2);
 //====================================
 
-//====================================
+//==================================== Maps
 Map<Pages, Widget> pages(AppUser user) => {Pages.Home: Home(user), Pages.Favorite: WishListScreen(user), Pages.Cart: CartScreen(user.email)};

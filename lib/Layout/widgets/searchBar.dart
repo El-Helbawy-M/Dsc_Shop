@@ -4,20 +4,22 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class SearchBar extends StatelessWidget {
-  const SearchBar(this.data, this.results, this.oneResult);
+  const SearchBar(this.data, this.results, this.oneResult, this.pageContext);
   final List<Product> data;
   final Function(List<Product>) results;
   final Function(Product) oneResult;
+  final BuildContext pageContext;
 
   @override
   Widget build(BuildContext context) {
     var searchmanager = Provider.of<SearchManager>(context);
+    if (searchmanager.data == null) searchmanager.setData(data);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          IconButton(icon: Icon(Icons.menu), onPressed: () {}),
+          IconButton(icon: Icon(Icons.menu), onPressed: () => Scaffold.of(pageContext).openDrawer()),
           Expanded(
             child: Container(
               child: Column(
@@ -27,7 +29,7 @@ class SearchBar extends StatelessWidget {
                     color: Colors.grey.shade200,
                     child: TextField(
                       onSubmitted: (value) {
-                        List<Product> list = data.where((element) => element.name.startsWith(searchmanager.text)).toList();
+                        List<Product> list = searchmanager.data.where((element) => element.name.startsWith(searchmanager.text)).toList();
                         searchmanager.check(false);
                         results(list);
                       },
@@ -41,7 +43,7 @@ class SearchBar extends StatelessWidget {
                         suffixIcon: IconButton(
                             icon: Icon(Icons.search, color: Colors.black),
                             onPressed: () {
-                              List<Product> list = data.where((element) => element.name.startsWith(searchmanager.text)).toList();
+                              List<Product> list = searchmanager.data.where((element) => element.name.startsWith(searchmanager.text)).toList();
                               searchmanager.check(false);
                               results(list);
                             }),
@@ -56,7 +58,7 @@ class SearchBar extends StatelessWidget {
                       child: SingleChildScrollView(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: data
+                          children: searchmanager.data
                               .map(
                                 (e) => (!e.name.startsWith(searchmanager.text))
                                     ? SizedBox()

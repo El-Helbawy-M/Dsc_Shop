@@ -122,7 +122,7 @@ class Home extends StatelessWidget {
                           ).toList(),
                   ),
           ),
-          ChangeNotifierProvider(create: (context) => SearchManager(), child: SearchBar(stateManager.data, (list) => stateManager.upDateData(list), (value) => stateManager.setResult(value))),
+          ChangeNotifierProvider(create: (context) => SearchManager(), child: SearchBar(stateManager.data, (list) => stateManager.upDateData(list), (value) => stateManager.setResult(value), context)),
         ],
       ),
     );

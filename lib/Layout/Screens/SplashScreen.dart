@@ -1,7 +1,6 @@
-import 'package:dsc_shop/Layout/tools/TimerManager.dart';
+import 'package:dsc_shop/Layout/Tools/TimerManager.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 
 class SplashScreen extends StatelessWidget {
   @override

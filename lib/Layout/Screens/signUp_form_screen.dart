@@ -52,7 +52,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       children: [
                         Container(
                           width: MediaQuery.of(signupContext).size.width,
-                          height: MediaQuery.of(signupContext).size.height / 2.9,
+                          height: MediaQuery.of(signupContext).size.height / 2.5,
                           decoration: BoxDecoration(
                               image: DecorationImage(
                             fit: BoxFit.fill,
@@ -159,6 +159,19 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             }
                           },
                         ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 10),
+                          child: Row(
+                            children: [
+                              Text("Do you have an account ? "),
+                              InkWell(
+                                child: Text(" Sign in", style: TextStyle(color: Colors.blue)),
+                                onTap: () => Navigator.pushNamed(context, "Sign In"),
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(height: 50)
                       ],
                     ),
                   ),
